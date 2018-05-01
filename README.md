@@ -1,9 +1,9 @@
 ### PHP - Getting CURP , RFC [México] and return JSON response with personal data.
 
 
-- This personal data (JSON response) must be validated with RENAPO site,and should not therefore be considered as official. . 
+- This personal data (JSON response) must be validated with RENAPO site, and should not therefore be considered as official.
 
-- The PHP script is a simple Web scraping that request data to the page: http://www.ossc.com.mx/curp.php.
+- The PHP script is a simple Web scraping that request data to the page: http://www.ossc.com.mx/curp.php
 
 - CURP(Unique Population Registry Code) for México.
 
