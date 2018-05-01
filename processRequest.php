@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Description of processRequest
+ * processRequest
  *
- * @author rene.escobar0
+ * @author rene.escobar
  */
 class processRequest 
 {
