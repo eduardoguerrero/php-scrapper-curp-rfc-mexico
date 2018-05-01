@@ -1,12 +1,16 @@
-### PHP - Consultar CURP , RFC [México] y retornar una respuesta JSON con la informacion de la persona.
+### PHP - Getting CURP , RFC [México] and return JSON response with personal data.
 
 
--Esta informacion deberia ser validada en RENAPO, por lo que no debe considerarse como un dato oficial. 
+- This personal data (JSON response) must be validated with RENAPO site,and should not therefore be considered as official. . 
 
--El script PHP toma la informacion de la persona de la pagina: http://www.ossc.com.mx/curp.php haciendo un simple Web scraping.
+- The PHP script is a simple Web scraping that request data to the page: http://www.ossc.com.mx/curp.php.
+
+- CURP(Unique Population Registry Code) for México.
+
+- RFC(Federal Taxpayer Register) for México.
 
 
-### Ejemplo index.php
+### Example index.php
 
 
 ```php
@@ -35,6 +39,6 @@ $result = $getPerson->processRequestCurpRfc($person);
 echo $result;
 
 ```
-### Respuesta
+### Output
 
 <a href="https://ibb.co/gDyBin"><img src="https://image.ibb.co/mrkrin/curp.jpg" alt="curp" border="0"></a>
