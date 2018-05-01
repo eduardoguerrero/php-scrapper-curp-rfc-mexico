@@ -6,7 +6,9 @@
 -El script PHP toma la informacion de la persona de la pagina: http://www.ossc.com.mx/curp.php
 
 
-###index.php
+### index.php
+
+
 ```php
 include_once 'CurpRfcProperties.php';
 
@@ -33,5 +35,6 @@ $result = $getPerson->processRequestCurpRfc($person);
 echo $result;
 
 ```
-###Respuesta
+### Respuesta
+
 <a href="https://ibb.co/gDyBin"><img src="https://image.ibb.co/mrkrin/curp.jpg" alt="curp" border="0"></a>
