@@ -41,3 +41,5 @@ echo $result;
 Feel free to fork it or do whatever you want with it.
 
 License: https://creativecommons.org/licenses/by/3.0/
+
+**Edit 2022: It does not work anymore (the resource http://www.ossc.com.mx/curp.php is not available)**
