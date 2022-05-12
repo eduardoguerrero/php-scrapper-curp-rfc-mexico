@@ -1,18 +1,17 @@
 <?php
 
 /**
- * processRequest
- *
- * @author rene.escobar
+ * Class processRequest
+ * @author escobarguerrero@gmail.com
  */
-class processRequest 
+class processRequest
 {
 
     /**
-     * @param   object    $oPerson     Person information       
-     * @return  array    
+     * @param   object    $oPerson     Person information
+     * @return  array
      */
-    public function processRequestCurpRfc($oPerson) 
+    public function processRequestCurpRfc($oPerson)
     {
         $curl = curl_init();
         $date = $oPerson->getDateOfBirth();
@@ -35,11 +34,11 @@ class processRequest
         ));
         $response = curl_exec($curl);
         $err = curl_error($curl);
-        if ($err) 
+        if ($err)
         {
             return array('status' => 'error', 'message' => $err);
-        } 
-            else
+        }
+        else
         {
             $html = html_entity_decode($response);
             curl_close($curl);
@@ -60,7 +59,7 @@ class processRequest
             for ($i = 0; $i < count($aTempData); $i = $i + 2)
             {
                 $aResult[] = array($aTempData[$i] => $aTempData[$i + 1]);
-            }            
+            }
             $aResponse = array
             (
                 'Full_name'=>$oPerson->getFullName(),
@@ -79,7 +78,7 @@ class processRequest
                 (
                     array_flip($oPerson->genderList())
                 )
-            );           
+            );
             return json_encode($aResponse);
         }
     }
