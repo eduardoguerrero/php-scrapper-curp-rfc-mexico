@@ -38,6 +38,9 @@ class processRequest
             $doc->loadHTML($html);
             $xpath = new \DOMXPath($doc);
             $sData = $xpath->query('//font');
+            if (count($sData) === 0) {
+                return ['error' => "Service Unavailable"];
+            }
             $aTempData = [];
             $iCounter = 0;
             foreach ($sData as $sItem) {
@@ -86,11 +89,6 @@ class processRequest
      */
     public function getResponse(CurpRfcProperties $person, $items)
     {
-        print_r($items);
-
-        exit();
-
-
         $response = [
             'full_name' => $person->getFullName(),
             'RFC' => $items[0]['RFC'],

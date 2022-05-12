@@ -15,4 +15,8 @@ $person
 $request = new processRequest();
 $result = $request->processRequestCurpRfc($person);
 
-echo $result;
+if (array_key_exists('error', $result)) {
+    print_r($result);
+} else {
+    echo $result;
+}
