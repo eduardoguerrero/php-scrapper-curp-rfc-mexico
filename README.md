@@ -27,13 +27,12 @@ $person
     ->setGender('Hombre')
     ->setEntity('DURANGO')
     ->setDateOfBirth(new \DateTime('1990-01-20'));
-
 $request = new processRequest();
 $result = $request->processRequestCurpRfc($person);
-echo $result;
 
+print_r($result);
 ```
-### Outputs
+### Success output
 
 ```json
 {
@@ -87,6 +86,8 @@ echo $result;
 }
 
 ```
+
+### Error output
 
 ```php
 Array
