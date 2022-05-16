@@ -31,28 +31,27 @@ class processRequest
         $err = curl_error($curl);
         if ($err) {
             return ['error' => $err];
-        } else {
-            $html = html_entity_decode($response);
-            curl_close($curl);
-            $doc = new \DOMDocument();
-            $doc->loadHTML($html);
-            $xpath = new \DOMXPath($doc);
-            $sData = $xpath->query('//font');
-            if (count($sData) === 0) {
-                return ['error' => "Service Unavailable"];
-            }
-            $aTempData = [];
-            $iCounter = 0;
-            foreach ($sData as $sItem) {
-                if (0 !== $iCounter) {
-                    $aTempData[] = str_replace(":", "", trim($sItem->nodeValue));
-                }
-                $iCounter++;
-            }
-            $items = $this->getData($aTempData);
-
-            return $this->getResponse($person, $items);
         }
+        $html = html_entity_decode($response);
+        curl_close($curl);
+        $doc = new \DOMDocument();
+        $doc->loadHTML($html);
+        $xpath = new \DOMXPath($doc);
+        $sData = $xpath->query('//font');
+        if (count($sData) === 0) {
+            return ['error' => "Service Unavailable"];
+        }
+        $aTempData = [];
+        $iCounter = 0;
+        foreach ($sData as $sItem) {
+            if (0 !== $iCounter) {
+                $aTempData[] = str_replace(":", "", trim($sItem->nodeValue));
+            }
+            $iCounter++;
+        }
+        $items = $this->getData($aTempData);
+
+        return $this->getResponse($person, $items);
     }
 
     /**
@@ -89,17 +88,19 @@ class processRequest
      */
     public function getResponse(CurpRfcProperties $person, $items)
     {
+        $rfc = isset($items[0]) ? $items[0]['RFC'] : null;
+        $curp = isset($items[0]) ? $items[1]['CURP'] : null;
         $response = [
             'full_name' => $person->getFullName(),
-            'RFC' => $items[0]['RFC'],
-            'CURP' => $items[1]['CURP'],
-            'day_of_birth' => date_format($person->getDateOfBirth(), 'Y-m-d'),
+            'rfc' => $rfc,
+            'curp' => $curp,
+            'day_of_birth'      => date_format($person->getDateOfBirth(), 'Y-m-d'),
             'entity_identifier' => $person->getEntityIdentifier(),
-            'entity_name' => $person->getEntityName(),
-            'entity_list' => [array_flip($person->getEntityList())],
+            'entity_name'       => $person->getEntityName(),
+            'entity_list'       => [array_flip($person->getEntityList())],
             'gender_identifier' => $person->getGenderIdentifier(),
-            'gender_name' => $person->getGenderName(),
-            'gender_list' => [array_flip($person->genderList())]
+            'gender_name'       => $person->getGenderName(),
+            'gender_list'       => [array_flip($person->genderList())]
         ];
 
         return json_encode($response);
